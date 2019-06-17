@@ -4,7 +4,7 @@
     <script src="pkg/rust_wasm_sample.js"></script>
     <script>
         wasm_bindgen('./pkg/rust_wasm_sample_bg.wasm').then(function() {
-            document.getElementById("content").textContent = `
+            document.getElementById("content-js").textContent = `
                 hello_world_1: ${wasm_bindgen.hello_world_1()},
                 hello_world_2: ${wasm_bindgen.hello_world_2()},
                 hello_world_4: ${wasm_bindgen.hello_world_4()}
@@ -12,5 +12,6 @@
         });
     </script>
 </head><body>
+    <div id="content-js"></div>
     <div id="content"></div>
 </body></html>
