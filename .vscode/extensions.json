@@ -1,0 +1,5 @@
+{
+    "recommendations": [
+        "rust-lang.rust", // For intellisense, syntax highlighting, etc.
+    ]
+}
