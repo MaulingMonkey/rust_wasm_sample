@@ -1,18 +1,14 @@
 <html><head>
     <meta charset="UTF-8">
     <title>rust_wasm_sample</title>
+    <script src="pkg/rust_wasm_sample.js"></script>
     <script>
-        addEventListener("load", function() {
-            fetch('target/wasm32-unknown-unknown/debug/rust_wasm_sample.wasm')
-                .then(response => response.arrayBuffer())
-                .then(ab => WebAssembly.instantiate(ab))
-                .then(module => {
-                    document.getElementById("content").textContent = `
-                        hello_world_1: ${module.instance.exports.hello_world_1()},
-                        hello_world_2: ${module.instance.exports.hello_world_2()},
-                        hello_world_3: ${module.instance.exports.hello_world_3()}
-                    `;
-                });
+        wasm_bindgen('./pkg/rust_wasm_sample_bg.wasm').then(function() {
+            document.getElementById("content").textContent = `
+                hello_world_1: ${wasm_bindgen.hello_world_1()},
+                hello_world_2: ${wasm_bindgen.hello_world_2()},
+                hello_world_4: ${wasm_bindgen.hello_world_4()}
+            `;
         });
     </script>
 </head><body>
