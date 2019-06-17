@@ -10,8 +10,10 @@
         "env": { "RUST_BACKTRACE": "1" },
     },
     "tasks": [
-        { "group": "build", "label": "cargo clean", "command": "cargo clean" },
-        { "group": { "isDefault": true, "kind": "build" }, "label": "wasm-pack build --target no-modules", "windows": { "command": "wasm-pack build --target no-modules" } },
+        { "group": "build", "label": "cargo clean",                         "command": "cargo clean" },
+        { "group": "build", "label": "cargo build",                         "command": "cargo build" },
+        { "group": "build", "label": "wasm-pack build --target no-modules", "command": "wasm-pack build --target no-modules" },
         { "label": "Open github.com/MaulingMonkey/rust_wasm_sample", "windows": { "command": "start \"\" https://github.com/MaulingMonkey/rust_win32_sample" } },
+        { "label": "Open index.html",                                "windows": { "command": "start \"\" index.html" } },
     ],
 }
