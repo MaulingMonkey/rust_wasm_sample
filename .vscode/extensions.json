@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "rust-lang.rust", // For intellisense, syntax highlighting, etc.
+        "msjsdiag.debugger-for-chrome", // Launching/Debugging WASM in Chrome
+        "rust-lang.rust",               // For intellisense, syntax highlighting, etc.
     ]
 }

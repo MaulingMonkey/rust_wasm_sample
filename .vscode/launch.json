@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        // msjsdiag.debugger-for-chrome
+        // "runtimeArgs": See https://peter.sh/experiments/chromium-command-line-switches/
+        {
+            "name": "Release Chrome", "type": "chrome", "request": "launch",
+            "preLaunchTask": "wasm-pack build --target no-modules",
+            "url": "${workspaceFolder}/index.html",
+            "runtimeArgs": ["--allow-file-access-from-files", "--auto-open-devtools-for-tabs"],
+            "internalConsoleOptions": "openOnSessionStart",
+        },
+        // XXX: No "Debug Chrome" target - `wasm-pack build --dev` currently panics, can't build.
+
+
+
+        // Add support for hbenl.vscode-firefox-debug ?  While wasm32-unknown-unknown currently doesn't output
+        // sourcemaps, if/when it does, FireFox has support for them, which would get us better debugging.
+    ]
+}

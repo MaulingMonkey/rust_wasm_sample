@@ -1,17 +1,29 @@
 <html><head>
     <meta charset="UTF-8">
     <title>rust_wasm_sample</title>
-    <script src="pkg/rust_wasm_sample.js"></script>
-    <script>
-        wasm_bindgen('./pkg/rust_wasm_sample_bg.wasm').then(function() {
-            document.getElementById("content-js").textContent = `
-                hello_world_1: ${wasm_bindgen.hello_world_1()},
-                hello_world_2: ${wasm_bindgen.hello_world_2()},
-                hello_world_4: ${wasm_bindgen.hello_world_4()}
-            `;
-        });
-    </script>
 </head><body>
     <div id="content-js"></div>
     <div id="content"></div>
+    <script src="https://unpkg.com/text-encoding@0.6.4/lib/encoding-indexes.js"></script>
+    <script src="https://unpkg.com/text-encoding@0.6.4/lib/encoding.js"></script>
+    <script src="pkg/rust_wasm_sample.js"></script>
+    <script>
+        // init - fetch doesn't work over file:// despite using --allow-file-access-from-files, so use XHR instead.
+        var xhr = new XMLHttpRequest();
+        xhr.responseType = "arraybuffer";
+        xhr.addEventListener("error", function(err) {
+            debugger;
+        });
+        xhr.addEventListener("load", function(load) {
+            wasm_bindgen(xhr.response).then(function(wasm) {
+                document.getElementById("content-js").textContent = `
+                    hello_world_1: ${wasm_bindgen.hello_world_1()},
+                    hello_world_2: ${wasm_bindgen.hello_world_2()},
+                    hello_world_4: ${wasm_bindgen.hello_world_4()}
+                `;
+            });
+        });
+        xhr.open("GET", "pkg/rust_wasm_sample_bg.wasm");
+        xhr.send();
+    </script>
 </body></html>
